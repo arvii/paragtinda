@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1
+# Development image for the Vite dev server.
+
+FROM docker.io/library/node:22-slim
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
